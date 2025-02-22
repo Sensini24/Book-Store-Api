@@ -69,14 +69,16 @@ namespace BookStoreApi.Controllers
                     
                 }
                 
-                return NotFound(new
-                {
-                    success = false,
-                    message = "Ningún usuario logeado actualmente",
-                });
+                
             }
+            
+            return NotFound(new
+            {
+                success = false,
+                message = "Ningún usuario logeado actualmente",
+            });
 
-            return BadRequest();
+            // return BadRequest();
             
         }
 

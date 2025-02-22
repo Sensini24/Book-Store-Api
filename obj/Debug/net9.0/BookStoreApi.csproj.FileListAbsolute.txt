@@ -213,3 +213,4 @@ D:\Proyectos c#\BookStoreApi\BookStoreApi\obj\Debug\net9.0\compressed\12t6058wzp
 D:\Proyectos c#\BookStoreApi\BookStoreApi\obj\Debug\net9.0\compressed\vm3yva0930-dd6z7egasc.gz
 D:\Proyectos c#\BookStoreApi\BookStoreApi\obj\Debug\net9.0\compressed\r2snvdu1jw-5pze98is44.gz
 D:\Proyectos c#\BookStoreApi\BookStoreApi\obj\Debug\net9.0\compressed\d8qnnhbs1y-mlv21k5csn.gz
+D:\Proyectos c#\BookStoreApi\BookStoreApi\obj\Debug\net9.0\BookStoreApi.sourcelink.json

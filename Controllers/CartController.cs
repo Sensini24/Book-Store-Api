@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.VisualBasic;
 
 namespace BookStoreApi.Controllers
 {
@@ -79,57 +80,30 @@ namespace BookStoreApi.Controllers
         {
             var sessionId = Request.Cookies["SessionId"];
             var currentUserName =  User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            
+            bool isUserLoggedIn = !string.IsNullOrEmpty(currentUserName);
+            bool hasSession = !string.IsNullOrEmpty(sessionId);
+            
             var cart = new Cart();
-            
-            if (String.IsNullOrEmpty(sessionId))
-            {
-                NotFound(new
-                {
-                    success=false,
-                    message = "No se encontró ese card con se session id"
-                });
-            }
-            else
-            {
-                 cart = await _db.Carts.Include(x => x.CartItems)
-                     .Where(i => i.SessionId == sessionId).FirstOrDefaultAsync();
-                 if (cart == null)
-                 {
-                     NotFound(new
-                     {
-                         sucess = false,
-                         message = "No se encontró ese card con se session id"
-                     });
-                 }
-            }
-            
-            if (String.IsNullOrEmpty(currentUserName))
-            {
-                return NotFound(new
-                {
-                    success = false,
-                    message = "Ningún usuario registrado"
-                });
-            }
-            else
-            {
-                int idUser = int.Parse(currentUserName);
-            
-                if (idUser == 0)
-                {
-                    NotFound();
-                }
-                cart = await _db.Carts.Include(x => x.CartItems).Where(i => i.UserId == idUser).FirstOrDefaultAsync();
-                if (cart == null)
-                {
-                    return NotFound(new
-                    {
-                        sucess = false,
-                        message = "Este usuario no tiene ningun carrito de compra"
-                    });
-                }
-            }
 
+            if (isUserLoggedIn || hasSession)
+            {
+                if (isUserLoggedIn)
+                {
+                    int? userId = int.Parse(currentUserName);
+                    cart = await _db.Carts.Include(x => x.CartItems)
+                        .Where(i => i.UserId ==userId ).FirstOrDefaultAsync();
+            
+                }
+                else
+                {
+                    cart = await _db.Carts.Include(x => x.CartItems)
+                        .Where(i => i.SessionId ==sessionId ).FirstOrDefaultAsync();
+                }
+            }
+            
+            
+            
             var cartdto = new GetCartAnonymousDTO()
             {
                 Id = cart.Id,
@@ -140,7 +114,7 @@ namespace BookStoreApi.Controllers
             };
             
             // IEnumerable<char> ids = cartdto.CartItems.SelectMany(x=>x.BookId).Distinct();
-
+            
             return Ok(new
             {
                 success = true,
@@ -149,6 +123,8 @@ namespace BookStoreApi.Controllers
             });
 
         }
+        
+        
         [HttpPost]
         [Route("addUserCart/{BookId:int}")]
         public async Task<IActionResult> Add(int BookId)
@@ -161,220 +137,113 @@ namespace BookStoreApi.Controllers
                     message = "El Id no es válido"
                 });
             }
+
             var currentUserName = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             var sessionId = Request.Cookies["SessionId"];
 
             bool isUserLoggedIn = !string.IsNullOrEmpty(currentUserName);
             bool hasSession = !string.IsNullOrEmpty(sessionId);
-            
-            var cart = new Cart();
-            var cartItems = new List<CartItem>();
-            int? idUser = int.Parse(currentUserName);
-            
-            if (isUserLoggedIn || hasSession)
+
+            var cart = await GetOrCreateCart(isUserLoggedIn, hasSession, currentUserName, sessionId);
+
+            var item = cart.CartItems.FirstOrDefault(x => x.BookId == BookId);
+            var book = await _db.Books.FirstOrDefaultAsync(x => x.Id == BookId);
+
+            if (item == null)
             {
-                
-                if (isUserLoggedIn)
+                var cartItem = new CartItem
                 {
-                    cart = await _db.Carts.Include(x => x.CartItems).FirstOrDefaultAsync(x=>x.UserId == idUser) ?? new Cart
-                    {
-                        UserId = idUser,
-                        SessionId = "",
-                        CreatedAt = DateTime.Now,
-                        CartItems = new List<CartItem>()
-                    };
+                    CartId = cart.Id,
+                    BookId = book.Id,
+                    Quantity = 1,
+                    UnitPrice = book.Price,
+                };
 
-
-                    // Ahora en el caso de que el item ya exista.
-                    var item =  cart.CartItems.FirstOrDefault(x => x.BookId == BookId);
-                    var book = _db.Books.FirstOrDefault(x => x.Id == BookId);
-                    if (item == null)
-                    {
-                        var cartItem = new CartItem()
-                        {
-                            CartId = cart.Id,
-                            BookId = book.Id,
-                            Quantity = 1,
-                            UnitPrice = _db.Books.Where(x=>x.Id == book.Id).FirstOrDefault().Price,
-                        };
-                        cart.CartItems.Add(cartItem);
-                        await _db.SaveChangesAsync();
-                        return Ok(new
-                        {
-                            sucess = true,
-                            message = "Item guardado en carrito",
-                        });
-                    }
-
-                    return Ok(new
-                    {
-                        sucess = true,
-                        message = "Se encontraron items",
-                    });
-
-                }
-
-                if (hasSession)
+                cart.CartItems.Add(cartItem);
+                await _db.SaveChangesAsync();
+                return Ok(new
                 {
-                    cart = await _db.Carts.Include(x => x.CartItems).FirstOrDefaultAsync(x=>x.SessionId == sessionId)?? new Cart
-                    {
-                        UserId = null,
-                        SessionId = sessionId,
-                        CreatedAt = DateTime.Now,
-                        CartItems = new List<CartItem>()
-                    };
-                    
-                    // Ahora en el caso de que el item ya exista.
-                    var item =  cart.CartItems.FirstOrDefault(x => x.BookId == BookId);
-                    if (item != null)
-                    {
-                        var cartItem = new CartItem()
-                        {
-                            CartId = item.CartId,
-                            BookId = item.BookId,
-                            Quantity = 1,
-                            UnitPrice = _db.Books.Where(x=>x.Id == item.BookId).FirstOrDefault().Price,
-                        };
-                        cart.CartItems.Add(cartItem);
-                        
-                        return Ok(new
-                        {
-                            sucess = true,
-                            message = "Item guardado en carrito",
-                        });
-                    }
-
-                    return Ok(new
-                    {
-                        sucess = true,
-                        message = "Se encontraron items",
-                    });
-                }
-                // else
-                // {
-                //     sessionId = Guid.NewGuid().ToString();
-                //     var cookieOptions = new CookieOptions
-                //     {
-                //         HttpOnly = true,
-                //         IsEssential = true,
-                //         Secure = true,
-                //         SameSite = SameSiteMode.None,
-                //         Expires = DateTime.UtcNow.AddDays(7)
-                //     };
-                //     Response.Cookies.Append("SessionId", sessionId, cookieOptions);
-                // }
-                
-                
-                
+                    success = true,
+                    message = "Item guardado en carrito",
+                });
             }
 
-            
-            
-            // var cart = new Cart();
-            // var cartItems = new List<CartItem>();
-            // if (idUser>0)
-            // {
-            //     //return Ok(new {message="Si hay valor",  value=cartADTO.UserId.Value });
-            //     cart = await _db.Carts.Include(x => x.CartItems).FirstOrDefaultAsync(x => x.UserId == idUser);
-            //     cartItems = _db.CartItems.Where(x => x.CartId == cart.Id).ToList();
-            // }
-            // else
-            // {
-            //     
-            //     // En caso de que no se tenga un session id
-            //     if (!hasSession)
-            //     {
-            //         sessionId = Guid.NewGuid().ToString();
-            //         var cookieOptions = new CookieOptions
-            //         {
-            //             HttpOnly = true,
-            //             IsEssential = true,
-            //             Secure = true,
-            //             SameSite = SameSiteMode.None,
-            //             Expires = DateTime.UtcNow.AddDays(7)
-            //         };
-            //         Response.Cookies.Append("SessionId", sessionId, cookieOptions);
-            //     }
-            //
-            //     // // Buscar si existe un carrito con el SessionId
-            //     // cart = await _db.Carts.Include(x => x.CartItems).FirstOrDefaultAsync(x => x.SessionId == sessionId);
-            //     cartItems = _db.CartItems.Where(x => x.CartId == cart.Id).ToList();
-            // }
-            
-
-            // // Si no existe, crear el carrito
-            // if (cart == null)
-            // {
-            //     cart = new Cart
-            //     {
-            //         UserId = idUser > 0 ? idUser : (int?)null,
-            //         SessionId = sessionId == null ? "": sessionId,
-            //         CreatedAt = DateTime.Now,
-            //         CartItems = new List<CartItem>()
-            //     };
-            //
-            //     _db.Carts.Add(cart);
-            //     await _db.SaveChangesAsync();
-            //     //En caso de que se este agregando items con un user id.
-            //     if (cart.UserId > 0)
-            //     {
-            //         var user = await _db.Users.Where(i => i.Id == idUser).FirstOrDefaultAsync();
-            //         if (user != null)
-            //         {
-            //             user.CartId = cart.Id;
-            //         }
-            //         
-            //     }
-            // }
-            //
-            // // Llenar de ítems seleccionados el carrito
-            // foreach (var item in cartItems)
-            // {
-            //     // Buscar si el ítem ya existe en el carrito actual
-            //     var existItem = cart.CartItems.FirstOrDefault(x => x.BookId == item.BookId);
-            //
-            //     if (existItem != null)
-            //     {
-            //         // Si el ítem ya existe, actualizar la cantidad
-            //         existItem.Quantity += item.Quantity;
-            //     }
-            //     else
-            //     {
-            //         // Si no existe, agregarlo
-            //         var newCartItem = new CartItem
-            //         {
-            //             CartId = cart.Id,
-            //             BookId = item.BookId,
-            //             Quantity = item.Quantity,
-            //             UnitPrice = item.UnitPrice
-            //         };
-            //         cart.CartItems.Add(newCartItem);
-            //     }
-            // }
-
-            // Guardar los cambios en la base de datos
-            await _db.SaveChangesAsync();
-
-            // Retornar el carrito actualizado junto con el SessionId
             return Ok(new
             {
-                SessionId = cart.SessionId,
-                Cart = new
-                {
-                    cart.Id,
-                    cart.UserId,
-                    cart.SessionId,
-                    cart.CreatedAt,
-                    CartItems = cart.CartItems.Select(ci => new
-                    {
-                        ci.Id,
-                        ci.BookId,
-                        ci.Quantity,
-                        ci.UnitPrice
-                    })
-                }
+                success = true,
+                message = "Se encontraron items",
             });
         }
+
+        private async Task<Cart> GetOrCreateCart(bool isUserLoggedIn, bool hasSession, string currentUserName, string sessionId)
+        {
+            if (isUserLoggedIn)
+            {
+                int? idUser = int.Parse(currentUserName);
+                return await GetOrCreateCartForUser(idUser);
+            }
+
+            if (hasSession)
+            {
+                return await GetOrCreateCartForSession(sessionId);
+            }
+
+            sessionId = Guid.NewGuid().ToString();
+            var cookieOptions = new CookieOptions
+            {
+                HttpOnly = true,
+                IsEssential = true,
+                Secure = true,
+                SameSite = SameSiteMode.None,
+                Expires = DateTime.UtcNow.AddDays(7)
+            };
+            Response.Cookies.Append("SessionId", sessionId, cookieOptions);
+
+            return await GetOrCreateCartForSession(sessionId);
+        }
+
+        private async Task<Cart> GetOrCreateCartForUser(int? userId)
+        {
+            var cart = await _db.Carts.Include(x => x.CartItems).FirstOrDefaultAsync(x => x.UserId == userId);
+
+            if (cart == null)
+            {
+                cart = new Cart
+                {
+                    UserId = userId,
+                    SessionId = "",
+                    CreatedAt = DateTime.Now,
+                    CartItems = new List<CartItem>()
+                };
+
+                _db.Carts.Add(cart);
+                await _db.SaveChangesAsync();
+            }
+
+            return cart;
+        }
+
+        private async Task<Cart> GetOrCreateCartForSession(string sessionId)
+        {
+            var cart = await _db.Carts.Include(x => x.CartItems).FirstOrDefaultAsync(x => x.SessionId == sessionId);
+
+            if (cart == null)
+            {
+                cart = new Cart
+                {
+                    UserId = null,
+                    SessionId = sessionId,
+                    CreatedAt = DateTime.Now,
+                    CartItems = new List<CartItem>()
+                };
+
+                _db.Carts.Add(cart);
+                await _db.SaveChangesAsync();
+            }
+
+            return cart;
+        }
+
 
         [HttpPost]
         [Route("addCart")]
@@ -530,20 +399,22 @@ namespace BookStoreApi.Controllers
                 }
 
                 var currentUserName = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                var sessionId = Request.Cookies["SessionId"];
 
-                if (String.IsNullOrEmpty(currentUserName))
+                bool isUserLoggedIn = !string.IsNullOrEmpty(currentUserName);
+                bool hasSession = !string.IsNullOrEmpty(sessionId);
+
+                ICollection<CartItem>? cartItem = null; 
+                if (isUserLoggedIn)
                 {
-                    return NotFound(new
-                    {
-                        success = false,
-                        message = "Ningún usuario registrado"
-                    });
+                    int idUser = int.Parse(currentUserName);
+                     cartItem =  await _db.Carts.Where(u => u.UserId == idUser).Select(i => i.CartItems).FirstOrDefaultAsync();
+                }else if (hasSession)
+                {
+                    cartItem = await _db.Carts.Where(u => u.SessionId == sessionId).Select(i => i.CartItems).FirstOrDefaultAsync();
                 }
-
-
-                int idUser = int.Parse(currentUserName);
-                var cartItem = await _db.Carts.Where(u => u.UserId == idUser).Select(i => i.CartItems)
-                    .FirstOrDefaultAsync();
+                
+                
                 if (cartItem == null)
                 {
                     return NotFound(new
@@ -570,6 +441,53 @@ namespace BookStoreApi.Controllers
                 return BadRequest(ex.Message);
             }
 
+        }
+
+
+        [HttpGet]
+        [Route("getQuantity")]
+        public async Task<IActionResult> GetQuantity()
+        {
+            try
+            {
+                var currentUserName = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                var sessionId = Request.Cookies["SessionId"];
+
+                bool isUserLoggedIn = !string.IsNullOrEmpty(currentUserName);
+                bool hasSession = !string.IsNullOrEmpty(sessionId);
+
+                int? sumItem = 0;
+                if (isUserLoggedIn)
+                {
+                    int idUser = int.Parse(currentUserName);
+                    var items = await _db.Carts.Where(u => u.UserId == idUser).Select(i => i.CartItems)
+                        .FirstOrDefaultAsync();
+                    sumItem = items.Sum(x => x.Quantity);
+                }
+                else if (hasSession)
+                {
+                    var items = await _db.Carts.Where(u => u.SessionId == sessionId).Select(i => i.CartItems)
+                        .FirstOrDefaultAsync();
+                    sumItem = items.Sum(x => x.Quantity);
+                }
+
+                return Ok(new
+                {
+                    success = true,
+                    message = "Cantidad de items en carrito obtenida",
+                    sumItem
+                });
+            }
+            catch (Exception e)
+            {
+                return BadRequest(new
+                {
+                    success = false,
+                    message = $"No se puedo obtener los datos : {e}"
+                });
+            }
+            
+            
         }
 
     }

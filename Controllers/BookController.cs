@@ -37,7 +37,23 @@ namespace BookStoreApi.Controllers
 
             if (!isUserLoggedIn && !hasSession)
             {
-                return Ok(new { success = true, message = "Libros Obtenidos", productos = _db.Books.ToList() });
+                var books = await (
+                    from x in _db.Books
+                    select new
+                    {
+                        IdBook = x.Id,
+                        Title = x.Title,
+                        Description = x.Description,
+                        Author = x.Author,
+                        Price = x.Price,
+                        Stock = x.Stock,
+                        ImagePath = x.ImagePath,
+                        Created = x.Created,
+                        IdGenre = x.IdGenre,
+                        Tags = x.Tags // Verifica si está en el carrito
+                    }
+                ).ToListAsync();
+                return Ok(new { success = true, message = "Libros Obtenidos", productos = books });
             }
 
             int? idUser = isUserLoggedIn ? int.Parse(currentUserName) : null;

@@ -13,7 +13,6 @@ namespace BookStoreApi.Controllers
         private readonly DataContext _db;
         private readonly ILogger<BookController> _logger;
         private readonly IWebHostEnvironment _webHostEnvironment;
-        private readonly UserController _userController;
         
         public BookController(DataContext db, ILogger<BookController> logger, IWebHostEnvironment webHostEnvironment)
         {

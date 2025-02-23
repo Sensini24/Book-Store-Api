@@ -490,5 +490,77 @@ namespace BookStoreApi.Controllers
             
         }
 
+
+        [HttpDelete]
+        [Route("removeItem/{BookId:int}")]
+        public async Task<IActionResult> GetQuantity([FromRoute] int BookId)
+        {
+            try
+            {
+                var currentUserName = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                var sessionId = Request.Cookies["SessionId"];
+
+                bool isUserLoggedIn = !string.IsNullOrEmpty(currentUserName);
+                bool hasSession = !string.IsNullOrEmpty(sessionId);
+
+                if (isUserLoggedIn)
+                {
+                    int idUser = int.Parse(currentUserName);
+
+                    var cart = await _db.Carts.Where(u => u.UserId == idUser).Select(x=>x.Id).FirstOrDefaultAsync();
+                    var cartItem = await _db.CartItems.Where(x=>x.BookId == BookId && x.CartId == cart).FirstOrDefaultAsync();
+
+                    return await RemoveItem(cartItem);
+                }
+
+                if (hasSession)
+                {
+                    var cart = await _db.Carts.Where(u => u.SessionId == sessionId).Select(x=>x.Id).FirstOrDefaultAsync();
+                    var cartItem = await _db.CartItems.Where(x=>x.BookId == BookId && x.CartId == cart).FirstOrDefaultAsync();
+
+                    return await RemoveItem(cartItem);
+                }
+                
+                return NotFound(new
+                {
+                    sucess = false,
+                    message = "No se encontro ningún sesion ni usuario logeado"
+                });
+            }catch (Exception e)
+            {
+                return BadRequest(new
+                {
+                    success = false,
+                    message = $"No se puedo obtener los datos : {e}"
+                });
+            }
+        }
+
+
+        private async Task<IActionResult> RemoveItem(CartItem item)
+        {
+            if (item == null)
+            {
+                return NotFound(new
+                {
+                    sucess = false,
+                    message = "El item no existe"
+                });
+            }
+            
+            var book = await _db.Books.Where(b=>b.Id == item.BookId).FirstOrDefaultAsync();
+                    
+            _db.CartItems.Remove(item);
+            await _db.SaveChangesAsync();
+            
+            return Ok(new
+            {
+                sucess = true,
+                message = $"El item {book.Title}"
+            });
+        }
+
+
+        
     }
 }

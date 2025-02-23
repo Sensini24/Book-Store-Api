@@ -1,7 +1,9 @@
-﻿using BookStoreApi.DTO.AuthDTO;
+﻿using System.Security.Claims;
+using BookStoreApi.DTO.AuthDTO;
 using BookStoreApi.Models;
 using BookStoreApi.Sevices;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace BookStoreApi.Controllers
 {
@@ -20,21 +22,22 @@ namespace BookStoreApi.Controllers
 
         [HttpPost]
         [Route("login")]
-        public IActionResult Login([FromBody] LoginDTO logindto)
+        public async Task<IActionResult> Login([FromBody] LoginDTO logindto)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest();
             }
-            var isUser = _db.Users.Any(e=>e.Email == logindto.Email && e.Password == logindto.Password);
+            var isUser = await _db.Users.AnyAsync(e=>e.Email == logindto.Email && e.Password == logindto.Password);
             if (isUser)
             {
-                var user = _db.Users.Where(u=>u.Email== logindto.Email).FirstOrDefault();
+                var user = await _db.Users.Where(u=>u.Email== logindto.Email).FirstOrDefaultAsync();
                 var token = _tokenService.CrearToken(user.Id);
 
-                addTokenToCookie(token);
-
-                return Ok(new { success = true, message = "Usuario aceptado", Token = token });
+                SetAuthCookie(token);
+                var result = await AddItemsSession(user.Id);
+                
+                return Ok(new { success = true, message = "Usuario aceptado", Token = token, result });
             }
             return NotFound(new
             {
@@ -82,11 +85,26 @@ namespace BookStoreApi.Controllers
             
         }
 
-        string addTokenToCookie(string token)
+        
+        private void SetAuthCookie(string token)
+        {
+            Response.Cookies.Append("tokenUser", token, new CookieOptions
+            {
+                HttpOnly = true,
+                Secure = true,
+                SameSite = SameSiteMode.None,
+                Expires = DateTime.UtcNow.AddDays(7)
+            });
+        }
+        private async Task<IActionResult>  addTokenToCookie(string token)
         {
             if (string.IsNullOrEmpty(token))
             {
-                return "El token esta vacío";
+                return NotFound(new
+                {
+                    success = false,
+                    message = "No se obtuvo el token",
+                });
             }
 
             var cookieOptions = new CookieOptions
@@ -98,7 +116,97 @@ namespace BookStoreApi.Controllers
                 Expires = DateTime.UtcNow.AddDays(7)
             };
             Response.Cookies.Append("tokenUser", token, cookieOptions);
-            return "Token almacenado en cookies";
+            
+            return Ok(new
+            {
+                success = true,
+                message = "Token guardado en cookies"
+            });
+        }
+        
+        
+        private async Task<IActionResult> AddItemsSession(int usuarioId)
+        {
+            var currentUserName = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var sessionId = Request.Cookies["SessionId"];
+
+            bool isUserLoggedIn = !string.IsNullOrEmpty(currentUserName);
+            bool hasSession = !string.IsNullOrEmpty(sessionId);
+
+            int idUser = usuarioId;
+            var idCart = _db.Carts.Where(c => c.UserId == idUser).Select(i=>i.Id).FirstOrDefault();
+            ICollection<CartItem>? cartItems; 
+            var cart = new Cart();
+            
+            if (idCart == null)
+            {
+                cart = new Cart
+                {
+                    UserId = idUser,
+                    SessionId = "",
+                    CreatedAt = DateTime.Now,
+                    CartItems = new List<CartItem>()
+                };
+
+                _db.Carts.Add(cart);
+                await _db.SaveChangesAsync();
+
+                cartItems = cart.CartItems.ToList();
+            }
+            else
+            {
+                cartItems = _db.CartItems.Where(x => x.CartId == idCart).ToList();
+            }
+            
+            if (hasSession)
+            {
+                var idCartSession = _db.Carts.Where(c => c.SessionId == sessionId).Select(i=>i.Id).FirstOrDefault();
+                var cartItemsSession = _db.CartItems.Where(x => x.CartId == idCartSession);
+                var newItems = new List<CartItem>(); 
+                
+                bool itemExistente = false;
+                Dictionary<int,int> nombresExistentes = new Dictionary<int,int>();
+                foreach (var itemsSession in cartItemsSession)
+                {
+                    foreach (var itemUser in cartItems)
+                    {
+                        if (itemsSession.BookId == itemUser.BookId)
+                        {
+                            itemUser.Quantity += itemsSession.Quantity;
+                            nombresExistentes.Add(itemsSession.BookId, itemsSession.Quantity);
+                        }
+                        
+                    }
+
+                    if (!nombresExistentes.ContainsKey(itemsSession.BookId))
+                    {
+                        newItems.Add(new CartItem
+                        {
+                            CartId = cartItems.FirstOrDefault()?.CartId ?? idCart,
+                            BookId = itemsSession.BookId,
+                            Quantity = itemsSession.Quantity,
+                            UnitPrice = _db.Books.Where(x => x.Id == itemsSession.BookId).Select(p => p.Price)
+                                .FirstOrDefault()
+                        }); 
+                    }
+                    
+                    
+
+                }
+                _db.CartItems.AddRange(newItems);
+                await _db.SaveChangesAsync();
+
+                return Ok(new
+                {
+                    success = true,
+                    message = "Los items de session fueron desplazados a el carrito de usuarios."
+                });
+            }
+            return NotFound(new
+            {
+                success = false,
+                message = "Session no encontrada."
+            });
         }
     }
 }

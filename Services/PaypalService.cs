@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
@@ -17,7 +18,7 @@ public class PaypalService
         _mode = configuration["Paypal:Mode"];
     }
 
-    private readonly string _baseUrl = "https://api.paypal.com/";
+    private readonly string _baseUrl = "https://api-m.sandbox.paypal.com/";
     private async Task<string> GetAccessToken()
     {
         using var client = new HttpClient();
@@ -25,7 +26,7 @@ public class PaypalService
         
         client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", auth);
         var content = new StringContent("grant_type=client_credentials", Encoding.UTF8, "application/x-www-form-urlencoded");
-        var response = await client.PostAsync($"{_baseUrl}/v1/oauth2/token", content);
+        var response = await client.PostAsync($"{_baseUrl}v1/oauth2/token", content);
 
         if (response.IsSuccessStatusCode)
         {
@@ -38,7 +39,7 @@ public class PaypalService
         return message;
     }
     
-    public async Task<string> CreateOrder(decimal amount, string currency)
+    public async Task<(string orderId, string approveUrl)> CreateOrder(decimal amount, string currency)
     {
         var accessToken = await GetAccessToken();
         using var client = new HttpClient();
@@ -57,7 +58,7 @@ public class PaypalService
                     amount = new
                     {
                         currency_code = currency,
-                        value = amount.ToString("F2")
+                        value = amount.ToString("F2", CultureInfo.InvariantCulture)
                     }
                 }
             },
@@ -70,16 +71,36 @@ public class PaypalService
 
         var content = new StringContent(JsonSerializer.Serialize(body), Encoding.UTF8, "application/json");
 
-        var response = await client.PostAsync($"{_baseUrl}/v2/checkout/orders", content);
-        var result = await response.Content.ReadAsStringAsync();
+        var response = await client.PostAsync($"{_baseUrl}v2/checkout/orders", content);
+        var responseContent = await response.Content.ReadAsStringAsync();
+        
+        if (!response.IsSuccessStatusCode)
+        {
+            throw new Exception($"Error en la solicitud a PayPal: {response.StatusCode} - {responseContent}");
+        }
 
-        var json = JsonDocument.Parse(result);
-        return json.RootElement.GetProperty("links").EnumerateArray()
+        var json = JsonDocument.Parse(responseContent);
+        string orderId = json.RootElement.GetProperty("id").GetString(); // Obtener Order ID
+        string approveUrl = json.RootElement.GetProperty("links").EnumerateArray()
             .First(link => link.GetProperty("rel").GetString() == "approve")
             .GetProperty("href").GetString();
+
+        return (orderId, approveUrl);
     }
     
-    public async Task<bool> CaptureOrder(string orderId)
+    // public async Task<bool> CaptureOrder(string orderId)
+    // {
+    //     var accessToken = await GetAccessToken();
+    //     using var client = new HttpClient();
+    //
+    //     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+    //     client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+    //
+    //     var response = await client.PostAsync($"{_baseUrl}v2/checkout/orders/{orderId}/capture", null);
+    //     return response.IsSuccessStatusCode;
+    // }
+    
+    public async Task<string> CaptureOrder(string orderId)
     {
         var accessToken = await GetAccessToken();
         using var client = new HttpClient();
@@ -87,9 +108,21 @@ public class PaypalService
         client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
         client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-        var response = await client.PostAsync($"{_baseUrl}/v2/checkout/orders/{orderId}/capture", null);
-        return response.IsSuccessStatusCode;
+        // var response = await client.PostAsync($"{_baseUrl}v2/checkout/orders/{orderId}/capture", null);
+        var response = await client.PostAsync($"{_baseUrl}v2/checkout/orders/{orderId}/capture",
+            new StringContent("{}", Encoding.UTF8, "application/json")
+        );
+        
+        var responseContent = await response.Content.ReadAsStringAsync();
+
+        if (!response.IsSuccessStatusCode)
+        {
+            throw new Exception($"Error al capturar el pago: {response.StatusCode} - {responseContent}");
+        }
+
+        return responseContent;
     }
+
 
 
 }

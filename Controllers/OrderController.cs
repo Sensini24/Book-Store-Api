@@ -40,7 +40,7 @@ public class OrderController : Controller
         {
             int idUser = int.Parse(currentUserName);
             var price = addOrderDto.Total;
-            var currency = "PEN";
+            var currency = "USD";
 
             var reference = "INV001";
 
@@ -70,9 +70,15 @@ public class OrderController : Controller
 
             await _db.SaveChangesAsync();
 
-            var response = await _paypalService.CreateOrder(price, currency);
+            var (orderId, approveUrl) = await _paypalService.CreateOrder(price, currency);
+            // var captureResponse = await _paypalService.CaptureOrder(orderId);
 
-            return Ok(response);
+            return Ok(new
+            {
+                success = true,
+                approveUrl,
+                orderId,
+            });
         }
         catch (Exception ex)
         {
@@ -84,4 +90,22 @@ public class OrderController : Controller
         }
     }
     
+    [HttpGet("paypalSuccess/{token}")]
+    public async Task<IActionResult> Success([FromRoute] string token)
+    {
+        if (string.IsNullOrEmpty(token))
+        {
+            return BadRequest("No se encontró el token de PayPal.");
+        }
+
+        var captureResponse = await _paypalService.CaptureOrder(token);
+
+        return Ok(new
+        {
+            captureResponse = captureResponse
+        });
+    }
+    
 }
+
+

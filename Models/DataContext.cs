@@ -16,8 +16,8 @@ namespace BookStoreApi.Models
         public DbSet<Cart> Carts { get; set; }
         public DbSet<CartItem> CartItems { get; set; }
         public DbSet<Comment> Comments { get; set; }
-        //public DbSet<Order> Orders { get; set; }
-        //public DbSet<OrderDetail> OrderDetails { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderDetail> OrderDetails { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -66,6 +66,27 @@ namespace BookStoreApi.Models
                 .WithMany(p => p.Comments)
                 .HasForeignKey(o => o.BookId)
                 .OnDelete(DeleteBehavior.Cascade);
+            
+            
+            modelBuilder.Entity<OrderDetail>()
+                .HasOne(e=>e.Book)
+                .WithMany(p=>p.OrderDetails)
+                .HasForeignKey(o=>o.BookId)
+                .OnDelete(DeleteBehavior.Restrict);
+            
+            modelBuilder.Entity<OrderDetail>()
+                .HasOne(e=>e.Order)
+                .WithMany(p=>p.OrderDetails)
+                .HasForeignKey(o=>o.OrderId)
+                .OnDelete(DeleteBehavior.Restrict);
+            
+            modelBuilder.Entity<OrderDetail>()
+                .Property(o => o.Price)
+                .HasColumnType("decimal(18, 2)");
+            
+            modelBuilder.Entity<Order>()
+                .Property(o => o.Total)
+                .HasColumnType("decimal(18, 2)");
         }
     }
 }

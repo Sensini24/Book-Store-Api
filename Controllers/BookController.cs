@@ -49,7 +49,7 @@ namespace BookStoreApi.Controllers
                         ImagePath = x.ImagePath,
                         Created = x.Created,
                         IdGenre = x.IdGenre,
-                        Tags = x.Tags // Verifica si está en el carrito
+                        Tags = x.Tags
                     }
                 ).ToListAsync();
                 return Ok(new { success = true, message = "Libros Obtenidos", productos = books });
@@ -185,18 +185,42 @@ namespace BookStoreApi.Controllers
             var rutaCovers = Path.Combine(webpathRuta, "covers");
             var image = file;
             var imageName = image.FileName;
+            var rutaArchivo = Path.Combine(rutaCovers, imageName);
+            
+            
 
             if (System.IO.File.Exists(Path.Combine(rutaCovers, imageName)))
             {
                 _logger.LogDebug($"Mensaje de image file: La imagen ya existe");
                 return BadRequest(new {success=false, message="Imagen ya existe", fileName=imageName });
             }
+
+            await using (Stream inputStream = image.OpenReadStream())
+            // await using (FileStream ouputStreamImage = new FileStream(rutaArchivo, FileMode.Create))
             
-            var rutaArchivo = Path.Combine(rutaCovers, imageName);
-            await using (var stream = new FileStream(rutaArchivo, FileMode.Create))
-            {
-                await image.CopyToAsync(stream);
+            /*
+             *EXPLICACION:
+             * 1. Se convierte el File en un OpenReadStream para poder manipularlo.
+             * 2. Se crea un FileStream vacío en la ruta donde se gurdará el archivo o imagen.
+             * 3. En este caso se opta por chunks o pedazos para reducir carga en la memoria
+             * 4. Se crea un buffer y se asigna una cantidad limitada que se llene en pedazos
+             * 5. Los bytesLeidos son para ver cuanto debe almacenarse en buffer
+             * 6. Se lee el stream y se pasa a buffer. La iteracion acaba cuando no hay datos que leer.
+             * 7. Se escribe en el stream creado en ruta, y los bytesLeidos indican cuanto se debe escibir a ese stream.
+             */
+            await using(FileStream ouputStream =  System.IO.File.Create(rutaArchivo))
+            { 
+                byte[] buffer = new byte[4096];
+                int bytesLeidos;
+                while ((bytesLeidos = await inputStream.ReadAsync(buffer, 0, buffer.Length)) > 0)
+                {
+                    await ouputStream.WriteAsync(buffer, 0, bytesLeidos);
+                }
             }
+            // await using (var stream = new FileStream(rutaArchivo, FileMode.Create))
+            // {
+            //     await image.CopyToAsync(stream);
+            // }
             
             return Ok(new{success = true, message = "La imagen fue subida correctamente", fileName=imageName });
             

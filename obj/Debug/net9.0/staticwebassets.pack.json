@@ -1,28 +1,12 @@
 {
   "Files": [
     {
-      "Id": "D:\\Proyectos c#\\BookStoreApi\\BookStoreApi\\wwwroot\\covers\\2666Cover.png",
-      "PackagePath": "staticwebassets\\covers\\2666Cover.png"
-    },
-    {
-      "Id": "D:\\Proyectos c#\\BookStoreApi\\BookStoreApi\\wwwroot\\covers\\BartlebyElEscribienteCover.png",
-      "PackagePath": "staticwebassets\\covers\\BartlebyElEscribienteCover.png"
-    },
-    {
       "Id": "D:\\Proyectos c#\\BookStoreApi\\BookStoreApi\\wwwroot\\covers\\FiccionesCover.png",
       "PackagePath": "staticwebassets\\covers\\FiccionesCover.png"
     },
     {
       "Id": "D:\\Proyectos c#\\BookStoreApi\\BookStoreApi\\wwwroot\\covers\\LaMetamorfosisCover.png",
       "PackagePath": "staticwebassets\\covers\\LaMetamorfosisCover.png"
-    },
-    {
-      "Id": "D:\\Proyectos c#\\BookStoreApi\\BookStoreApi\\wwwroot\\covers\\LazarilloCover.jpg",
-      "PackagePath": "staticwebassets\\covers\\LazarilloCover.jpg"
-    },
-    {
-      "Id": "D:\\Proyectos c#\\BookStoreApi\\BookStoreApi\\wwwroot\\covers\\MobyDickCover.png",
-      "PackagePath": "staticwebassets\\covers\\MobyDickCover.png"
     },
     {
       "Id": "D:\\Proyectos c#\\BookStoreApi\\BookStoreApi\\wwwroot\\css\\site.css",

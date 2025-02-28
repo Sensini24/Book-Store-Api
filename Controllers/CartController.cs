@@ -468,7 +468,8 @@ namespace BookStoreApi.Controllers
                 {
                     var items = await _db.Carts.Where(u => u.SessionId == sessionId).Select(i => i.CartItems)
                         .FirstOrDefaultAsync();
-                    sumItem = items.Sum(x => x.Quantity);
+
+                    sumItem = items == null ? 0 : items.Sum(x => x.Quantity);
                 }
 
                 return Ok(new

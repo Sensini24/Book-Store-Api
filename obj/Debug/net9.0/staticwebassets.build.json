@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Iztfpv++twNFfWb87Av8NKtQt+nK+9MnWolb42htkkw=",
+  "Hash": "ZwnVZhBAmyuCSQXSxXyS67cnisreRqF/MKRmDWYP0LA=",
   "Source": "BookStoreApi",
   "BasePath": "_content/BookStoreApi",
   "Mode": "Default",
@@ -1256,48 +1256,6 @@
       "OriginalItemSpec": "D:\\Proyectos c#\\BookStoreApi\\BookStoreApi\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"
     },
     {
-      "Identity": "D:\\Proyectos c#\\BookStoreApi\\BookStoreApi\\wwwroot\\covers\\2666Cover.png",
-      "SourceId": "BookStoreApi",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\Proyectos c#\\BookStoreApi\\BookStoreApi\\wwwroot\\",
-      "BasePath": "_content/BookStoreApi",
-      "RelativePath": "covers/2666Cover#[.{fingerprint}]?.png",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "Fingerprint": "0l2znp0mjs",
-      "Integrity": "1PJ8vEu1EmYfmvq4XbdC2ZWERcEwKnDoDvPGbjzDCHA=",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\covers\\2666Cover.png"
-    },
-    {
-      "Identity": "D:\\Proyectos c#\\BookStoreApi\\BookStoreApi\\wwwroot\\covers\\BartlebyElEscribienteCover.png",
-      "SourceId": "BookStoreApi",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\Proyectos c#\\BookStoreApi\\BookStoreApi\\wwwroot\\",
-      "BasePath": "_content/BookStoreApi",
-      "RelativePath": "covers/BartlebyElEscribienteCover#[.{fingerprint}]?.png",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "Fingerprint": "1yhz2x4510",
-      "Integrity": "mSuAqViLPZ1f+PKk6vUatSMVDwW2Twqg0j4nraPrdOU=",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\covers\\BartlebyElEscribienteCover.png"
-    },
-    {
       "Identity": "D:\\Proyectos c#\\BookStoreApi\\BookStoreApi\\wwwroot\\covers\\FiccionesCover.png",
       "SourceId": "BookStoreApi",
       "SourceType": "Discovered",
@@ -1338,48 +1296,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\covers\\LaMetamorfosisCover.png"
-    },
-    {
-      "Identity": "D:\\Proyectos c#\\BookStoreApi\\BookStoreApi\\wwwroot\\covers\\LazarilloCover.jpg",
-      "SourceId": "BookStoreApi",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\Proyectos c#\\BookStoreApi\\BookStoreApi\\wwwroot\\",
-      "BasePath": "_content/BookStoreApi",
-      "RelativePath": "covers/LazarilloCover#[.{fingerprint}]?.jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "Fingerprint": "i8svo6sqdy",
-      "Integrity": "Ti+F4MMeotWbMua7lT9LiyCeuDKJ35QZMKDkzap87A4=",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\covers\\LazarilloCover.jpg"
-    },
-    {
-      "Identity": "D:\\Proyectos c#\\BookStoreApi\\BookStoreApi\\wwwroot\\covers\\MobyDickCover.png",
-      "SourceId": "BookStoreApi",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\Proyectos c#\\BookStoreApi\\BookStoreApi\\wwwroot\\",
-      "BasePath": "_content/BookStoreApi",
-      "RelativePath": "covers/MobyDickCover#[.{fingerprint}]?.png",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "Fingerprint": "214ktkinxa",
-      "Integrity": "Zj7Kb47qMahyZ2eITsNvUilX2ZtPUl+gnTksP3Hytg0=",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\covers\\MobyDickCover.png"
     },
     {
       "Identity": "D:\\Proyectos c#\\BookStoreApi\\BookStoreApi\\wwwroot\\css\\site.css",
@@ -2644,170 +2560,6 @@
   ],
   "Endpoints": [
     {
-      "Route": "covers/2666Cover.0l2znp0mjs.png",
-      "AssetFile": "D:\\Proyectos c#\\BookStoreApi\\BookStoreApi\\wwwroot\\covers\\2666Cover.png",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "577165"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "image/png"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"1PJ8vEu1EmYfmvq4XbdC2ZWERcEwKnDoDvPGbjzDCHA=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 06 Feb 2025 02:26:47 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "0l2znp0mjs"
-        },
-        {
-          "Name": "label",
-          "Value": "covers/2666Cover.png"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-1PJ8vEu1EmYfmvq4XbdC2ZWERcEwKnDoDvPGbjzDCHA="
-        }
-      ]
-    },
-    {
-      "Route": "covers/2666Cover.png",
-      "AssetFile": "D:\\Proyectos c#\\BookStoreApi\\BookStoreApi\\wwwroot\\covers\\2666Cover.png",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "577165"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "image/png"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"1PJ8vEu1EmYfmvq4XbdC2ZWERcEwKnDoDvPGbjzDCHA=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 06 Feb 2025 02:26:47 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=3600, must-revalidate"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-1PJ8vEu1EmYfmvq4XbdC2ZWERcEwKnDoDvPGbjzDCHA="
-        }
-      ]
-    },
-    {
-      "Route": "covers/BartlebyElEscribienteCover.1yhz2x4510.png",
-      "AssetFile": "D:\\Proyectos c#\\BookStoreApi\\BookStoreApi\\wwwroot\\covers\\BartlebyElEscribienteCover.png",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "216886"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "image/png"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"mSuAqViLPZ1f+PKk6vUatSMVDwW2Twqg0j4nraPrdOU=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 06 Feb 2025 02:37:30 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "1yhz2x4510"
-        },
-        {
-          "Name": "label",
-          "Value": "covers/BartlebyElEscribienteCover.png"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-mSuAqViLPZ1f+PKk6vUatSMVDwW2Twqg0j4nraPrdOU="
-        }
-      ]
-    },
-    {
-      "Route": "covers/BartlebyElEscribienteCover.png",
-      "AssetFile": "D:\\Proyectos c#\\BookStoreApi\\BookStoreApi\\wwwroot\\covers\\BartlebyElEscribienteCover.png",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "216886"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "image/png"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"mSuAqViLPZ1f+PKk6vUatSMVDwW2Twqg0j4nraPrdOU=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 06 Feb 2025 02:37:30 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=3600, must-revalidate"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-mSuAqViLPZ1f+PKk6vUatSMVDwW2Twqg0j4nraPrdOU="
-        }
-      ]
-    },
-    {
       "Route": "covers/FiccionesCover.png",
       "AssetFile": "D:\\Proyectos c#\\BookStoreApi\\BookStoreApi\\wwwroot\\covers\\FiccionesCover.png",
       "Selectors": [],
@@ -2830,7 +2582,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 06 Feb 2025 02:27:06 GMT"
+          "Value": "Thu, 27 Feb 2025 02:22:56 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2867,7 +2619,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 06 Feb 2025 02:27:06 GMT"
+          "Value": "Thu, 27 Feb 2025 02:22:56 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2912,7 +2664,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 06 Feb 2025 02:27:10 GMT"
+          "Value": "Thu, 27 Feb 2025 02:24:11 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2957,7 +2709,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 06 Feb 2025 02:27:10 GMT"
+          "Value": "Thu, 27 Feb 2025 02:24:11 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2968,170 +2720,6 @@
         {
           "Name": "integrity",
           "Value": "sha256-ZOI7lXFgJ61yl037N7qjDNWsrGpCBBBROBWxQSnwGxI="
-        }
-      ]
-    },
-    {
-      "Route": "covers/LazarilloCover.i8svo6sqdy.jpg",
-      "AssetFile": "D:\\Proyectos c#\\BookStoreApi\\BookStoreApi\\wwwroot\\covers\\LazarilloCover.jpg",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "28821"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "image/jpeg"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"Ti+F4MMeotWbMua7lT9LiyCeuDKJ35QZMKDkzap87A4=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 06 Feb 2025 02:11:22 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "i8svo6sqdy"
-        },
-        {
-          "Name": "label",
-          "Value": "covers/LazarilloCover.jpg"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-Ti+F4MMeotWbMua7lT9LiyCeuDKJ35QZMKDkzap87A4="
-        }
-      ]
-    },
-    {
-      "Route": "covers/LazarilloCover.jpg",
-      "AssetFile": "D:\\Proyectos c#\\BookStoreApi\\BookStoreApi\\wwwroot\\covers\\LazarilloCover.jpg",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "28821"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "image/jpeg"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"Ti+F4MMeotWbMua7lT9LiyCeuDKJ35QZMKDkzap87A4=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 06 Feb 2025 02:11:22 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=3600, must-revalidate"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-Ti+F4MMeotWbMua7lT9LiyCeuDKJ35QZMKDkzap87A4="
-        }
-      ]
-    },
-    {
-      "Route": "covers/MobyDickCover.214ktkinxa.png",
-      "AssetFile": "D:\\Proyectos c#\\BookStoreApi\\BookStoreApi\\wwwroot\\covers\\MobyDickCover.png",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "566294"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "image/png"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"Zj7Kb47qMahyZ2eITsNvUilX2ZtPUl+gnTksP3Hytg0=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 06 Feb 2025 02:27:13 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "214ktkinxa"
-        },
-        {
-          "Name": "label",
-          "Value": "covers/MobyDickCover.png"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-Zj7Kb47qMahyZ2eITsNvUilX2ZtPUl+gnTksP3Hytg0="
-        }
-      ]
-    },
-    {
-      "Route": "covers/MobyDickCover.png",
-      "AssetFile": "D:\\Proyectos c#\\BookStoreApi\\BookStoreApi\\wwwroot\\covers\\MobyDickCover.png",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "566294"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "image/png"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"Zj7Kb47qMahyZ2eITsNvUilX2ZtPUl+gnTksP3Hytg0=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 06 Feb 2025 02:27:13 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=3600, must-revalidate"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-Zj7Kb47qMahyZ2eITsNvUilX2ZtPUl+gnTksP3Hytg0="
         }
       ]
     },

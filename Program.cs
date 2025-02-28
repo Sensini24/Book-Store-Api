@@ -32,6 +32,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<ICommentRepository, CommentRepository>();
 builder.Services.AddScoped<CommentService>();
+builder.Services.AddScoped<PaypalService>();
 
 builder.Services.AddDbContext<DataContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));

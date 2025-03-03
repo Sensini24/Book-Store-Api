@@ -1,8 +1,16 @@
 {
   "Files": [
     {
+      "Id": "D:\\Proyectos c#\\BookStoreApi\\BookStoreApi\\wwwroot\\covers\\2666Cover.png",
+      "PackagePath": "staticwebassets\\covers\\2666Cover.png"
+    },
+    {
       "Id": "D:\\Proyectos c#\\BookStoreApi\\BookStoreApi\\wwwroot\\covers\\FiccionesCover.png",
       "PackagePath": "staticwebassets\\covers\\FiccionesCover.png"
+    },
+    {
+      "Id": "D:\\Proyectos c#\\BookStoreApi\\BookStoreApi\\wwwroot\\covers\\La actualidad innombrable.jpg",
+      "PackagePath": "staticwebassets\\covers\\La actualidad innombrable.jpg"
     },
     {
       "Id": "D:\\Proyectos c#\\BookStoreApi\\BookStoreApi\\wwwroot\\covers\\LaMetamorfosisCover.png",

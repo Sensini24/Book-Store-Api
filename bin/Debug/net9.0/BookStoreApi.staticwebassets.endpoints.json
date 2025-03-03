@@ -3,6 +3,133 @@
   "ManifestType": "Build",
   "Endpoints": [
     {
+      "Route": "covers/2666Cover.peiffrwqmf.png",
+      "AssetFile": "covers/2666Cover.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "146055"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"D7puXQ4LNAvwilqM4E+dUhRnjneFDKyjiAH+3UorhUM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 01 Mar 2025 22:45:19 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "peiffrwqmf"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-D7puXQ4LNAvwilqM4E+dUhRnjneFDKyjiAH+3UorhUM="
+        },
+        {
+          "Name": "label",
+          "Value": "covers/2666Cover.png"
+        }
+      ]
+    },
+    {
+      "Route": "covers/2666Cover.png",
+      "AssetFile": "covers/2666Cover.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "146055"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"D7puXQ4LNAvwilqM4E+dUhRnjneFDKyjiAH+3UorhUM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 01 Mar 2025 22:45:19 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-D7puXQ4LNAvwilqM4E+dUhRnjneFDKyjiAH+3UorhUM="
+        }
+      ]
+    },
+    {
+      "Route": "covers/FiccionesCover.60a7aak34n.png",
+      "AssetFile": "covers/FiccionesCover.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "498408"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ZuAnUUZ7bpkHyndDe2nH/84+iwNXNtglWczQkqO1VQE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 01 Mar 2025 22:00:53 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "60a7aak34n"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-ZuAnUUZ7bpkHyndDe2nH/84+iwNXNtglWczQkqO1VQE="
+        },
+        {
+          "Name": "label",
+          "Value": "covers/FiccionesCover.png"
+        }
+      ]
+    },
+    {
       "Route": "covers/FiccionesCover.png",
       "AssetFile": "covers/FiccionesCover.png",
       "Selectors": [],
@@ -17,7 +144,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1313133"
+          "Value": "498408"
         },
         {
           "Name": "Content-Type",
@@ -25,23 +152,60 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"0uiXQQTOK1gBNRYlqOeinTtaMpUwCGHXzcRIEfppmmU=\""
+          "Value": "\"ZuAnUUZ7bpkHyndDe2nH/84+iwNXNtglWczQkqO1VQE=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 27 Feb 2025 02:22:56 GMT"
+          "Value": "Sat, 01 Mar 2025 22:00:53 GMT"
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-0uiXQQTOK1gBNRYlqOeinTtaMpUwCGHXzcRIEfppmmU="
+          "Value": "sha256-ZuAnUUZ7bpkHyndDe2nH/84+iwNXNtglWczQkqO1VQE="
         }
       ]
     },
     {
-      "Route": "covers/FiccionesCover.y0zussdq44.png",
-      "AssetFile": "covers/FiccionesCover.png",
+      "Route": "covers/La actualidad innombrable.jpg",
+      "AssetFile": "covers/La actualidad innombrable.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "14604"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"qO4fHAsoSZEriWqciFY/kjccqGWwed9vqgeMm1706P8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 01 Mar 2025 22:42:36 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-qO4fHAsoSZEriWqciFY/kjccqGWwed9vqgeMm1706P8="
+        }
+      ]
+    },
+    {
+      "Route": "covers/La actualidad innombrable.ow5jqk2sm4.jpg",
+      "AssetFile": "covers/La actualidad innombrable.jpg",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -54,38 +218,38 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1313133"
+          "Value": "14604"
         },
         {
           "Name": "Content-Type",
-          "Value": "image/png"
+          "Value": "image/jpeg"
         },
         {
           "Name": "ETag",
-          "Value": "\"0uiXQQTOK1gBNRYlqOeinTtaMpUwCGHXzcRIEfppmmU=\""
+          "Value": "\"qO4fHAsoSZEriWqciFY/kjccqGWwed9vqgeMm1706P8=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 27 Feb 2025 02:22:56 GMT"
+          "Value": "Sat, 01 Mar 2025 22:42:36 GMT"
         }
       ],
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "y0zussdq44"
+          "Value": "ow5jqk2sm4"
         },
         {
           "Name": "integrity",
-          "Value": "sha256-0uiXQQTOK1gBNRYlqOeinTtaMpUwCGHXzcRIEfppmmU="
+          "Value": "sha256-qO4fHAsoSZEriWqciFY/kjccqGWwed9vqgeMm1706P8="
         },
         {
           "Name": "label",
-          "Value": "covers/FiccionesCover.png"
+          "Value": "covers/La actualidad innombrable.jpg"
         }
       ]
     },
     {
-      "Route": "covers/LaMetamorfosisCover.g91om07i91.png",
+      "Route": "covers/LaMetamorfosisCover.gqdely58d1.png",
       "AssetFile": "covers/LaMetamorfosisCover.png",
       "Selectors": [],
       "ResponseHeaders": [
@@ -99,7 +263,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "281662"
+          "Value": "78895"
         },
         {
           "Name": "Content-Type",
@@ -107,21 +271,21 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"ZOI7lXFgJ61yl037N7qjDNWsrGpCBBBROBWxQSnwGxI=\""
+          "Value": "\"+HXjZaUlIE2mN6lCCs5yTI6UPBLvarl8tGdAr7rccdA=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 27 Feb 2025 02:24:11 GMT"
+          "Value": "Sat, 01 Mar 2025 22:01:33 GMT"
         }
       ],
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "g91om07i91"
+          "Value": "gqdely58d1"
         },
         {
           "Name": "integrity",
-          "Value": "sha256-ZOI7lXFgJ61yl037N7qjDNWsrGpCBBBROBWxQSnwGxI="
+          "Value": "sha256-+HXjZaUlIE2mN6lCCs5yTI6UPBLvarl8tGdAr7rccdA="
         },
         {
           "Name": "label",
@@ -144,7 +308,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "281662"
+          "Value": "78895"
         },
         {
           "Name": "Content-Type",
@@ -152,17 +316,17 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"ZOI7lXFgJ61yl037N7qjDNWsrGpCBBBROBWxQSnwGxI=\""
+          "Value": "\"+HXjZaUlIE2mN6lCCs5yTI6UPBLvarl8tGdAr7rccdA=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 27 Feb 2025 02:24:11 GMT"
+          "Value": "Sat, 01 Mar 2025 22:01:33 GMT"
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-ZOI7lXFgJ61yl037N7qjDNWsrGpCBBBROBWxQSnwGxI="
+          "Value": "sha256-+HXjZaUlIE2mN6lCCs5yTI6UPBLvarl8tGdAr7rccdA="
         }
       ]
     },

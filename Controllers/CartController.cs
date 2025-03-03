@@ -3,6 +3,7 @@ using BookStoreApi.DTO.BookDTO;
 using BookStoreApi.DTO.CartDTO;
 using BookStoreApi.DTO.CartItemsDTO;
 using BookStoreApi.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -22,58 +23,59 @@ namespace BookStoreApi.Controllers
             _db = db;
         }
 
-        [HttpGet]
-        [Route("getCart/{sessionid}")]
-        public async Task<IActionResult> Get(string sessionid)
-        {
-            if(sessionid == null)
-            {
-                return NotFound();
-            }
+        // [HttpGet]
+        // [Route("getCart/{sessionid}")]
+        // public async Task<IActionResult> Get(string sessionid)
+        // {
+        //     if(sessionid == null)
+        //     {
+        //         return NotFound();
+        //     }
+        //
+        //     var cart = await _db.Carts.Include(x=>x.CartItems).Where(i=>i.SessionId == sessionid).FirstOrDefaultAsync();
+        //     if (cart == null)
+        //     {
+        //         return NotFound("No se encontró ese card con se session id");
+        //     }
+        //
+        //     var cartdto = new GetCartAnonymousDTO()
+        //     {
+        //         Id = cart.Id,
+        //         SessionId = cart.SessionId,
+        //         CreatedAt = cart.CreatedAt,
+        //         CartItems = cart.CartItems,
+        //     };
+        //
+        //     return Ok(cartdto);
+        // }
 
-            var cart = await _db.Carts.Include(x=>x.CartItems).Where(i=>i.SessionId == sessionid).FirstOrDefaultAsync();
-            if (cart == null)
-            {
-                return NotFound("No se encontró ese card con se session id");
-            }
+        // [HttpGet]
+        // [Route("getCartByUser/{userid}")]
+        // public async Task<IActionResult> Get(int userid)
+        // {
+        //     if (userid == 0)
+        //     {
+        //         return NotFound();
+        //     }
+        //
+        //     var cart = await _db.Carts.Include(x => x.CartItems).Where(i => i.UserId == userid).FirstOrDefaultAsync();
+        //     if (cart == null)
+        //     {
+        //         return NotFound("No se encontró ese card con se session id");
+        //     }
+        //
+        //     var cartdto = new GetCartAnonymousDTO()
+        //     {
+        //         Id = cart.Id,
+        //         SessionId = cart.SessionId,
+        //         CreatedAt = cart.CreatedAt,
+        //         CartItems = cart.CartItems,
+        //     };
+        //
+        //     return Ok(cartdto);
+        // }
 
-            var cartdto = new GetCartAnonymousDTO()
-            {
-                Id = cart.Id,
-                SessionId = cart.SessionId,
-                CreatedAt = cart.CreatedAt,
-                CartItems = cart.CartItems,
-            };
-
-            return Ok(cartdto);
-        }
-
-        [HttpGet]
-        [Route("getCartByUser/{userid}")]
-        public async Task<IActionResult> Get(int userid)
-        {
-            if (userid == 0)
-            {
-                return NotFound();
-            }
-
-            var cart = await _db.Carts.Include(x => x.CartItems).Where(i => i.UserId == userid).FirstOrDefaultAsync();
-            if (cart == null)
-            {
-                return NotFound("No se encontró ese card con se session id");
-            }
-
-            var cartdto = new GetCartAnonymousDTO()
-            {
-                Id = cart.Id,
-                SessionId = cart.SessionId,
-                CreatedAt = cart.CreatedAt,
-                CartItems = cart.CartItems,
-            };
-
-            return Ok(cartdto);
-        }
-
+        [Authorize(Roles = "Cliente")]
         [HttpGet]
         [Route("getUserCart")]
         public async Task<IActionResult> Get()
@@ -124,7 +126,7 @@ namespace BookStoreApi.Controllers
 
         }
         
-        
+        [Authorize(Roles = "Cliente")]
         [HttpPost]
         [Route("addUserCart/{BookId:int}")]
         public async Task<IActionResult> Add(int BookId)

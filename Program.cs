@@ -26,6 +26,7 @@ builder.Services.AddCors(options =>
 });
 
 
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
@@ -94,8 +95,12 @@ app.UseStaticFiles();
 app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
-
-
+app.Use(async (context, next) =>
+{
+    Console.WriteLine("Request: " + context.Request.Path);
+    await next();
+    Console.WriteLine("Response: " + context.Response.StatusCode);
+});
 
 app.MapControllerRoute(
     name: "default",

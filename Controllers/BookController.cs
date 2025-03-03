@@ -85,9 +85,85 @@ namespace BookStoreApi.Controllers
                 productos
             });
         }
+        
+        
+        [HttpGet]
+        [Route("getBooksById/{idBook}")]
+        // public async Task<IActionResult> Get([FromBody] int idBook)
+        public async Task<IActionResult> Get([FromRoute] int idBook)
+        {
+            if (idBook == null || idBook <=0)
+            {
+                return BadRequest(new
+                {
+                    success = true,
+                    message = "IdBook no existe"
+                });
+            }
+            // Obtener el userId y sessionId
+            var currentUserName = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var sessionId = Request.Cookies["SessionId"];
 
+            
+            bool isUserLoggedIn = !string.IsNullOrEmpty(currentUserName);
+            bool hasSession = !string.IsNullOrEmpty(sessionId);
 
-        [Authorize]
+            if (!isUserLoggedIn && !hasSession)
+            {
+                
+                var books = await (
+                    from x in _db.Books
+                    where x.Id == idBook
+                    select new
+                    {
+                        IdBook = x.Id,
+                        Title = x.Title,
+                        Description = x.Description,
+                        Author = x.Author,
+                        Price = x.Price,
+                        Stock = x.Stock,
+                        ImagePath = x.ImagePath,
+                        Created = x.Created,
+                        IdGenre = x.IdGenre,
+                        Tags = x.Tags
+                    }
+                ).ToListAsync();
+                return Ok(new { success = true, message = "Libros Obtenidos", productos = books });
+            }
+
+            int? idUser = isUserLoggedIn ? int.Parse(currentUserName) : null;
+
+            
+            var productos = await (
+                from x in _db.Books
+                where x.Id == idBook
+                select new
+                {
+                    IdBook = x.Id,
+                    Title = x.Title,
+                    Description = x.Description,
+                    Author = x.Author,
+                    Price = x.Price,
+                    Stock = x.Stock,
+                    ImagePath = x.ImagePath,
+                    Created = x.Created,
+                    IdGenre = x.IdGenre,
+                    Tags = x.Tags,
+                    IsInCart = _db.CartItems.Any(ci =>
+                        ci.BookId == x.Id &&
+                        (isUserLoggedIn ? ci.Cart.UserId == idUser : ci.Cart.SessionId == sessionId)) // Verifica si está en el carrito
+                }
+            ).ToListAsync();
+
+            return Ok(new
+            {
+                success = true,
+                message = "Libros Obtenidos",
+                productos
+            });
+        }
+
+        [Authorize(Roles = "Administrador")]
         [HttpPost]
         [Route("addBook")]
         public async Task<IActionResult> Add([FromForm] AddBookDTO bookdto)
@@ -146,7 +222,7 @@ namespace BookStoreApi.Controllers
             }
         }
 
-        [Authorize]
+        [Authorize(Roles = "Administrador")]
         [HttpPut]
         [Route("editBook")]
         public async Task<IActionResult> Put([FromBody] EditBookDTO bookdto)

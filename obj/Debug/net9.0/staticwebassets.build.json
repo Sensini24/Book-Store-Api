@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "ZwnVZhBAmyuCSQXSxXyS67cnisreRqF/MKRmDWYP0LA=",
+  "Hash": "t9q97e1ZDgLE4i+KCTUufPu0uHkMgx8akB+ScqdWzxQ=",
   "Source": "BookStoreApi",
   "BasePath": "_content/BookStoreApi",
   "Mode": "Default",
@@ -1256,6 +1256,27 @@
       "OriginalItemSpec": "D:\\Proyectos c#\\BookStoreApi\\BookStoreApi\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"
     },
     {
+      "Identity": "D:\\Proyectos c#\\BookStoreApi\\BookStoreApi\\wwwroot\\covers\\2666Cover.png",
+      "SourceId": "BookStoreApi",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Proyectos c#\\BookStoreApi\\BookStoreApi\\wwwroot\\",
+      "BasePath": "_content/BookStoreApi",
+      "RelativePath": "covers/2666Cover#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "peiffrwqmf",
+      "Integrity": "D7puXQ4LNAvwilqM4E+dUhRnjneFDKyjiAH+3UorhUM=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\covers\\2666Cover.png"
+    },
+    {
       "Identity": "D:\\Proyectos c#\\BookStoreApi\\BookStoreApi\\wwwroot\\covers\\FiccionesCover.png",
       "SourceId": "BookStoreApi",
       "SourceType": "Discovered",
@@ -1270,11 +1291,32 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "y0zussdq44",
-      "Integrity": "0uiXQQTOK1gBNRYlqOeinTtaMpUwCGHXzcRIEfppmmU=",
+      "Fingerprint": "60a7aak34n",
+      "Integrity": "ZuAnUUZ7bpkHyndDe2nH/84+iwNXNtglWczQkqO1VQE=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\covers\\FiccionesCover.png"
+    },
+    {
+      "Identity": "D:\\Proyectos c#\\BookStoreApi\\BookStoreApi\\wwwroot\\covers\\La actualidad innombrable.jpg",
+      "SourceId": "BookStoreApi",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Proyectos c#\\BookStoreApi\\BookStoreApi\\wwwroot\\",
+      "BasePath": "_content/BookStoreApi",
+      "RelativePath": "covers/La actualidad innombrable#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "ow5jqk2sm4",
+      "Integrity": "qO4fHAsoSZEriWqciFY/kjccqGWwed9vqgeMm1706P8=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\covers\\La actualidad innombrable.jpg"
     },
     {
       "Identity": "D:\\Proyectos c#\\BookStoreApi\\BookStoreApi\\wwwroot\\covers\\LaMetamorfosisCover.png",
@@ -1291,8 +1333,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "g91om07i91",
-      "Integrity": "ZOI7lXFgJ61yl037N7qjDNWsrGpCBBBROBWxQSnwGxI=",
+      "Fingerprint": "gqdely58d1",
+      "Integrity": "+HXjZaUlIE2mN6lCCs5yTI6UPBLvarl8tGdAr7rccdA=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\covers\\LaMetamorfosisCover.png"
@@ -2560,6 +2602,133 @@
   ],
   "Endpoints": [
     {
+      "Route": "covers/2666Cover.peiffrwqmf.png",
+      "AssetFile": "D:\\Proyectos c#\\BookStoreApi\\BookStoreApi\\wwwroot\\covers\\2666Cover.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "146055"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"D7puXQ4LNAvwilqM4E+dUhRnjneFDKyjiAH+3UorhUM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 01 Mar 2025 22:45:19 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "peiffrwqmf"
+        },
+        {
+          "Name": "label",
+          "Value": "covers/2666Cover.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-D7puXQ4LNAvwilqM4E+dUhRnjneFDKyjiAH+3UorhUM="
+        }
+      ]
+    },
+    {
+      "Route": "covers/2666Cover.png",
+      "AssetFile": "D:\\Proyectos c#\\BookStoreApi\\BookStoreApi\\wwwroot\\covers\\2666Cover.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "146055"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"D7puXQ4LNAvwilqM4E+dUhRnjneFDKyjiAH+3UorhUM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 01 Mar 2025 22:45:19 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-D7puXQ4LNAvwilqM4E+dUhRnjneFDKyjiAH+3UorhUM="
+        }
+      ]
+    },
+    {
+      "Route": "covers/FiccionesCover.60a7aak34n.png",
+      "AssetFile": "D:\\Proyectos c#\\BookStoreApi\\BookStoreApi\\wwwroot\\covers\\FiccionesCover.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "498408"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ZuAnUUZ7bpkHyndDe2nH/84+iwNXNtglWczQkqO1VQE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 01 Mar 2025 22:00:53 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "60a7aak34n"
+        },
+        {
+          "Name": "label",
+          "Value": "covers/FiccionesCover.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-ZuAnUUZ7bpkHyndDe2nH/84+iwNXNtglWczQkqO1VQE="
+        }
+      ]
+    },
+    {
       "Route": "covers/FiccionesCover.png",
       "AssetFile": "D:\\Proyectos c#\\BookStoreApi\\BookStoreApi\\wwwroot\\covers\\FiccionesCover.png",
       "Selectors": [],
@@ -2570,7 +2739,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1313133"
+          "Value": "498408"
         },
         {
           "Name": "Content-Type",
@@ -2578,11 +2747,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"0uiXQQTOK1gBNRYlqOeinTtaMpUwCGHXzcRIEfppmmU=\""
+          "Value": "\"ZuAnUUZ7bpkHyndDe2nH/84+iwNXNtglWczQkqO1VQE=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 27 Feb 2025 02:22:56 GMT"
+          "Value": "Sat, 01 Mar 2025 22:00:53 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2592,13 +2761,13 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-0uiXQQTOK1gBNRYlqOeinTtaMpUwCGHXzcRIEfppmmU="
+          "Value": "sha256-ZuAnUUZ7bpkHyndDe2nH/84+iwNXNtglWczQkqO1VQE="
         }
       ]
     },
     {
-      "Route": "covers/FiccionesCover.y0zussdq44.png",
-      "AssetFile": "D:\\Proyectos c#\\BookStoreApi\\BookStoreApi\\wwwroot\\covers\\FiccionesCover.png",
+      "Route": "covers/La actualidad innombrable.jpg",
+      "AssetFile": "D:\\Proyectos c#\\BookStoreApi\\BookStoreApi\\wwwroot\\covers\\La actualidad innombrable.jpg",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2607,19 +2776,56 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1313133"
+          "Value": "14604"
         },
         {
           "Name": "Content-Type",
-          "Value": "image/png"
+          "Value": "image/jpeg"
         },
         {
           "Name": "ETag",
-          "Value": "\"0uiXQQTOK1gBNRYlqOeinTtaMpUwCGHXzcRIEfppmmU=\""
+          "Value": "\"qO4fHAsoSZEriWqciFY/kjccqGWwed9vqgeMm1706P8=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 27 Feb 2025 02:22:56 GMT"
+          "Value": "Sat, 01 Mar 2025 22:42:36 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-qO4fHAsoSZEriWqciFY/kjccqGWwed9vqgeMm1706P8="
+        }
+      ]
+    },
+    {
+      "Route": "covers/La actualidad innombrable.ow5jqk2sm4.jpg",
+      "AssetFile": "D:\\Proyectos c#\\BookStoreApi\\BookStoreApi\\wwwroot\\covers\\La actualidad innombrable.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "14604"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"qO4fHAsoSZEriWqciFY/kjccqGWwed9vqgeMm1706P8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 01 Mar 2025 22:42:36 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2629,20 +2835,20 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "y0zussdq44"
+          "Value": "ow5jqk2sm4"
         },
         {
           "Name": "label",
-          "Value": "covers/FiccionesCover.png"
+          "Value": "covers/La actualidad innombrable.jpg"
         },
         {
           "Name": "integrity",
-          "Value": "sha256-0uiXQQTOK1gBNRYlqOeinTtaMpUwCGHXzcRIEfppmmU="
+          "Value": "sha256-qO4fHAsoSZEriWqciFY/kjccqGWwed9vqgeMm1706P8="
         }
       ]
     },
     {
-      "Route": "covers/LaMetamorfosisCover.g91om07i91.png",
+      "Route": "covers/LaMetamorfosisCover.gqdely58d1.png",
       "AssetFile": "D:\\Proyectos c#\\BookStoreApi\\BookStoreApi\\wwwroot\\covers\\LaMetamorfosisCover.png",
       "Selectors": [],
       "ResponseHeaders": [
@@ -2652,7 +2858,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "281662"
+          "Value": "78895"
         },
         {
           "Name": "Content-Type",
@@ -2660,11 +2866,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"ZOI7lXFgJ61yl037N7qjDNWsrGpCBBBROBWxQSnwGxI=\""
+          "Value": "\"+HXjZaUlIE2mN6lCCs5yTI6UPBLvarl8tGdAr7rccdA=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 27 Feb 2025 02:24:11 GMT"
+          "Value": "Sat, 01 Mar 2025 22:01:33 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2674,7 +2880,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "g91om07i91"
+          "Value": "gqdely58d1"
         },
         {
           "Name": "label",
@@ -2682,7 +2888,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-ZOI7lXFgJ61yl037N7qjDNWsrGpCBBBROBWxQSnwGxI="
+          "Value": "sha256-+HXjZaUlIE2mN6lCCs5yTI6UPBLvarl8tGdAr7rccdA="
         }
       ]
     },
@@ -2697,7 +2903,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "281662"
+          "Value": "78895"
         },
         {
           "Name": "Content-Type",
@@ -2705,11 +2911,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"ZOI7lXFgJ61yl037N7qjDNWsrGpCBBBROBWxQSnwGxI=\""
+          "Value": "\"+HXjZaUlIE2mN6lCCs5yTI6UPBLvarl8tGdAr7rccdA=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 27 Feb 2025 02:24:11 GMT"
+          "Value": "Sat, 01 Mar 2025 22:01:33 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2719,7 +2925,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-ZOI7lXFgJ61yl037N7qjDNWsrGpCBBBROBWxQSnwGxI="
+          "Value": "sha256-+HXjZaUlIE2mN6lCCs5yTI6UPBLvarl8tGdAr7rccdA="
         }
       ]
     },

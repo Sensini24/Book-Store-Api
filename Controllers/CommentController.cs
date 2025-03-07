@@ -1,6 +1,8 @@
-﻿using BookStoreApi.DTO.CommentDTO;
+﻿using System.Security.Claims;
+using BookStoreApi.DTO.CommentDTO;
 using BookStoreApi.Models;
 using BookStoreApi.Sevices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BookStoreApi.Controllers
@@ -49,6 +51,7 @@ namespace BookStoreApi.Controllers
 
         }
 
+        [Authorize]
         [HttpPost]
         [Route("addComment")]
         public async Task<IActionResult> PostComment([FromBody] AddCommentDTO commentDto)
@@ -59,14 +62,40 @@ namespace BookStoreApi.Controllers
                 {
                     return BadRequest(ModelState);
                 }
+                
+                var sessionId = Request.Cookies["SessionId"];
+                var currentUserName =  User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            
+                bool isUserLoggedIn = !string.IsNullOrEmpty(currentUserName);
+                bool hasSession = !string.IsNullOrEmpty(sessionId);
 
-                var comment = await _commentService.AddComment(commentDto);
+                if (!isUserLoggedIn)
+                {
+                    return Unauthorized(new { success = false, message="Tienes que registrarte para poder comentar" });
+                }
+                
+                int userId = int.Parse(currentUserName);
+                var commentTotal = new Comment
+                {
+                    UserId = userId,
+                    BookId = commentDto.BookId,
+                    Content = commentDto.Content
+                };
+
+                var comment = await _commentService.AddComment(userId, commentDto);
                 return Ok(new { success = true, message="Comentario Guardado", data = comment });
+                
             }
             catch(Exception ex)
             {
-                return BadRequest(ex.Message);
+                return BadRequest(new
+                {
+                    success = false,
+                    message = ex.Message
+                });
             }
+            
+            return BadRequest();
         }
 
         [HttpDelete]

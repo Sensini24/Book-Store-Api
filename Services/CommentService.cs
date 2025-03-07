@@ -57,18 +57,17 @@ namespace BookStoreApi.Sevices
             }) ?? Enumerable.Empty<GetCommentDTO>().AsQueryable();
         }
 
-        public async Task<GetCommentDTO> AddComment(AddCommentDTO commentDto)
+        public async Task<GetCommentDTO> AddComment(int userId, AddCommentDTO commentdto)
         {
 
-            Comment comment = new Comment
+            var comment = new Comment
             {
-                UserId = commentDto.UserId,
-                BookId = commentDto.BookId,
-                Content = commentDto.Content,
+                UserId = userId,
+                BookId = commentdto.BookId,
+                Content = commentdto.Content,
                 Created = DateTime.Now,
                 Rating = 0
             };
-
             await _commentRepository.PostComment(comment);
             return new GetCommentDTO()
             {

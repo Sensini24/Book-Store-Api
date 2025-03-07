@@ -18,6 +18,8 @@ namespace BookStoreApi.Models
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
+        public DbSet<WishList> WishLists { get; set; }
+        public DbSet<WishListDetails> WishListDetails { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -87,6 +89,25 @@ namespace BookStoreApi.Models
             modelBuilder.Entity<Order>()
                 .Property(o => o.Total)
                 .HasColumnType("decimal(18, 2)");
+            
+            modelBuilder.Entity<WishList>()
+                .HasOne(w=>w.User)
+                .WithOne(u=>u.WishList)
+                .HasForeignKey<WishList>(p => p.IdUser)
+                .OnDelete(DeleteBehavior.Cascade);
+            
+            modelBuilder.Entity<WishListDetails>()
+                .HasOne(wd => wd.Book)
+                .WithMany(b => b.WishListDetails)
+                .HasForeignKey(wd => wd.IdBook)
+                .OnDelete(DeleteBehavior.Cascade);
+            
+            modelBuilder.Entity<WishListDetails>()
+                .HasOne(wd => wd.WishList)
+                .WithMany(b => b.WishListDetails)
+                .HasForeignKey(wd => wd.IdWishList)
+                .OnDelete(DeleteBehavior.Cascade);
+                
         }
     }
 }

@@ -11,6 +11,8 @@
         //Segunda migracion: cartId puede ser null
         public int? CartId { get; set; }
         public Cart Cart { get; set; }
+        public int? WishListId { get; set; }
+        public virtual WishList WishList { get; set; }
         public ICollection<Comment>? Comments { get; set; }
     }
 }

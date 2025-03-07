@@ -33,13 +33,15 @@ namespace BookStoreApi.Controllers
             {
                 var user = await _db.Users.Where(u=>u.Email== logindto.Email).FirstOrDefaultAsync();
                 var token = _tokenService.CrearToken(user.Id);
+                SetAuthCookie(token);
                 IActionResult result = NotFound(new
                 {
                     success = false,
                     message = "Este usuario no es cliente."
                 });
-                SetAuthCookie(token);
-                if (User.FindFirst(ClaimTypes.Role)?.Value == "Cliente")
+                
+                string rol = user.Rol;
+                if (rol == "Cliente")
                 {
                     result = await AddItemsSession(user.Id);
                 }

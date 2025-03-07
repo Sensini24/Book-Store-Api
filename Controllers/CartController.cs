@@ -75,7 +75,7 @@ namespace BookStoreApi.Controllers
         //     return Ok(cartdto);
         // }
 
-        [Authorize(Roles = "Cliente")]
+        // [Authorize(Roles = "Cliente")]
         [HttpGet]
         [Route("getUserCart")]
         public async Task<IActionResult> Get()
@@ -126,7 +126,7 @@ namespace BookStoreApi.Controllers
 
         }
         
-        [Authorize(Roles = "Cliente")]
+        // [Authorize(Roles = "Cliente")]
         [HttpPost]
         [Route("addUserCart/{BookId:int}")]
         public async Task<IActionResult> Add(int BookId)
